@@ -10,14 +10,16 @@ from utils import add_years
 
 class Trakt(object):
     def __init__(self, username, client_id='', client_secret='',
-                 oauth_token='', config=None):
+                 oauth_token='', oauth=False, config=None):
         self.config = config
         self.username = username
         self.client_id = client_id
         self.client_secret = client_secret
+        self.oauth = oauth
         self.oauth_token = oauth_token
-        if not self.oauth_token:
-            self.oauth_auth()
+        if self.oauth:
+            if not self.oauth_token:
+                self.oauth_auth()
         else:
             trakt.core.pin_auth(username, client_id=client_id, client_secret=client_secret)
         self.trakt = trakt
