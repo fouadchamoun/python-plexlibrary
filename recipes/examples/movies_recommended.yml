@@ -1,6 +1,9 @@
 # Supported types: movie, tv
 library_type: 'movie'
-trakt_oauth: true  # Note: has to be run manually for the first time to generate a token which needs to be added to the config file
+
+trakt:
+  username: ''
+  oauth_token: ''  # Note: has to be run manually for the first time to generate a token
 
 # Source list(s)
 source_list_urls:

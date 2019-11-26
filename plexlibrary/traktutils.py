@@ -10,33 +10,29 @@ from utils import add_years
 
 class Trakt(object):
     def __init__(self, username, client_id='', client_secret='',
-                 oauth_token='', oauth=False, config=None):
+                 oauth_token='', config=None):
         self.config = config
         self.username = username
         self.client_id = client_id
         self.client_secret = client_secret
         self.oauth_token = oauth_token
-        self.oauth = oauth
-        if oauth:
-            if not self.oauth_token:
-                self.oauth_auth()
+        if not self.oauth_token:
+            self.oauth_auth()
         else:
-            trakt.core.pin_auth(username, client_id=client_id,
-                                client_secret=client_secret)
+            trakt.core.pin_auth(username, client_id=client_id, client_secret=client_secret)
         self.trakt = trakt
         self.trakt_core = trakt.core.Core()
 
     def oauth_auth(self):
         store = False
         self.oauth_token = trakt.core.oauth_auth(
-            self.username, client_id=self.client_id,
-            client_secret=self.client_secret, store=store)
-        # Write to the file
-        if self.config:
-            self.config['trakt']['oauth_token'] = self.oauth_token
-            self.config.save()
-            print(u"Added new OAuth token to the config file under trakt:")
-            print(u"    oauth_token: '{}'".format(self.oauth_token))
+            self.username, 
+            client_id=self.client_id,
+            client_secret=self.client_secret, 
+            store=store
+        )
+        print(u"Don't forget to add the new OAuth token to the recipe file under trakt:")
+        print(u"    oauth_token: '{}'".format(self.oauth_token))
 
     def _handle_request(self, method, url, data=None):
         """Stolen from trakt.core to support optional OAUTH operations

@@ -46,16 +46,14 @@ class Recipe(object):
         self.plex = plexutils.Plex(self.config['plex']['baseurl'],
                                    self.config['plex']['token'])
 
-        if self.config['trakt']['username']:
+        if self.recipe['trakt']:
             self.trakt = traktutils.Trakt(
-                self.config['trakt']['username'],
+                self.recipe['trakt']['username'],
                 client_id=self.config['trakt']['client_id'],
                 client_secret=self.config['trakt']['client_secret'],
-                oauth_token=self.config['trakt'].get('oauth_token', ''),
-                oauth=self.recipe.get('trakt_oauth', False),
-                config=self.config)
-            if self.trakt.oauth_token:
-                self.config['trakt']['oauth_token'] = self.trakt.oauth_token
+                oauth_token=self.recipe['trakt'].get('oauth_token', ''),
+                config=self.config
+            )
 
         if self.config['tmdb']['api_key']:
             self.tmdb = tmdb.TMDb(
