@@ -61,6 +61,7 @@ class Trakt(object):
                     trakt.core.errors.OAuthException.http_code:
                 # OAuth token probably expired
                 print(u"Trakt OAuth token invalid/expired")
+                print(u"    oauth_token: '{}'".format(self.oauth_token))
                 self.oauth_auth()
                 return self._handle_request(method, url, data)
             raise self.trakt_core.error_map[response.status_code]()

@@ -52,6 +52,7 @@ class Recipe(object):
                 client_id=self.config['trakt']['client_id'],
                 client_secret=self.config['trakt']['client_secret'],
                 oauth_token=self.recipe['trakt'].get('oauth_token', ''),
+                oauth=self.recipe['trakt']['enable_oauth'],
                 config=self.config
             )
 
