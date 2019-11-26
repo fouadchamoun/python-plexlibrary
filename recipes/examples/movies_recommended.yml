@@ -2,8 +2,8 @@
 library_type: 'movie'
 
 trakt:
-  username: ''
-  enable_oauth: true
+  username: '' # required
+  enable_oauth: true # required
   oauth_token: ''  # Note: has to be run manually for the first time to generate a token
 
 # Source list(s)

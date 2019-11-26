@@ -46,7 +46,7 @@ class Recipe(object):
         self.plex = plexutils.Plex(self.config['plex']['baseurl'],
                                    self.config['plex']['token'])
 
-        if self.recipe.get('trakt'):
+        if self.recipe['trakt']:
             self.trakt = traktutils.Trakt(
                 self.recipe['trakt']['username'],
                 client_id=self.config['trakt']['client_id'],
