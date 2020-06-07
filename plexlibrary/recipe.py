@@ -204,7 +204,7 @@ class Recipe(object):
                     for library_config in self.source_library_config:
                         for f in library_config['folders']:
                             f = os.path.abspath(f)
-                            if old_path.lower().startswith(f.lower()):
+                            if old_path.lower().startswith(f.lower() + "/"):
                                 folder_name = os.path.relpath(old_path, f)
                                 break
                         else:
